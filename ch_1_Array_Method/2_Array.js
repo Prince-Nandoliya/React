@@ -19,8 +19,8 @@ console.log("index of", Bike.indexOf("Kawasaki ZX-10R"));
 console.log("includes method", Bike.includes("Suzuki Hayabusa"));
 
 
-let num = [2,3,5,6,7,4,1,]
+// let num = [2,3,5,6,7,4,1,]
 
-console.log(num)
+// console.log(num)
 
-console.log("after sort method",num.sort())
+// console.log("after sort method",num.sort())
