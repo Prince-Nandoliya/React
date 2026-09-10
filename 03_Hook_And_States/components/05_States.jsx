@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const LifeCycle = () => {
+const State_05 = () => {
   const [Email, setEmail] = useState("");
 
   const [Password, setPassword] = useState("");
@@ -28,4 +28,4 @@ const LifeCycle = () => {
   );
 };
 
-export default LifeCycle;
+export default State_05;

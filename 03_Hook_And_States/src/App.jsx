@@ -3,7 +3,7 @@ import States from "../components/01_state";
 import State_02 from "../components/02_state";
 import PrevState from "../components/03_PrevState";
 import PrevState_04 from "../components/04_PrevState";
-import LifeCycle from "../components/05_lifeCycle";
+import State_05 from "../components/05_States";
 import Object_state from "../components/06_Object_state";
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
       <State_02 />
       <PrevState />
       <PrevState_04/> */}
-      {/* <LifeCycle /> */}
+      <State_05 />
       <Object_state />
     </>
   );
