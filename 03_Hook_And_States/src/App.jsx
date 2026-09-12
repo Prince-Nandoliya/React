@@ -1,10 +1,9 @@
 import React from "react";
-import States from "../components/01_state";
-import State_02 from "../components/02_state";
-import PrevState from "../components/03_PrevState";
-import PrevState_04 from "../components/04_PrevState";
-import State_05 from "../components/05_States";
-import Object_state from "../components/06_Object_state";
+import States from "./components/01_state";
+import State_02 from "./components/02_state";
+import PrevState from "./components/03_PrevState";
+import State_05 from "./components/05_States";
+import Object_state from "./components/06_Object_state";
 
 const App = () => {
   return (
@@ -13,8 +12,7 @@ const App = () => {
       {/* <States />
       <State_02 />
       <PrevState />
-      <PrevState_04/> */}
-      <State_05 />
+      <State_05 /> */}
       <Object_state />
     </>
   );
