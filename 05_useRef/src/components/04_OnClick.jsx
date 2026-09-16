@@ -1,6 +1,6 @@
 import React from 'react'
 
-const OnClick_03 = () => {
+const OnClick_04 = () => {
     
      const handleclick = () => {
         alert("button click")
@@ -14,4 +14,4 @@ const OnClick_03 = () => {
   )
 }
 
-export default OnClick_03
+export default OnClick_04
