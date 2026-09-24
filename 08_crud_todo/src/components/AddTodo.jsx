@@ -1,43 +1,51 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const AddTodo = () => {
+const AddTodo = ({addtodo}) => {
+  const [input, setInput] = useState({
+    Task: "",
+    Description: "",
+  });
 
-    const [input,setInput] = useState({
-        Task:"",
-        Description:""
-    })
+  const handleChnge = (feild, e) => {
+    setInput((prev) => {
+      return {
+        ...prev,
+        [feild]: e.target.value,
+      };
+    });
+  };
 
+  const handlesubmit = (e) => {
+    e.preventDefault();
 
-    const handleChnge = (feild,e) => {
-        setInput((prev)=>{
-            return{
-                ...prev,
-                [feild]:e.target.value
-            }
-        })
-    }
+    addtodo(input); 
 
-    console.log("input",input)
-
-    const handlesubmit = () => {
-        e.preventDefault();
-
-        setInput({Task:"",Description:""})
-    }
+    setInput({ Task: "", Description: "" });
+  };
 
   return (
-    <form action="">
-        <input type="text" placeholder='Enter Task' value={input.Task}  onChange={(e) => handleChnge("Task",e)}/>
-        <br /><br />
-        <input type="text" placeholder='Enter Description' value={input.Description} onChange={(e) => handleChnge("Description",e)} />
-        <br /><br />
-        <button type='submit'>add</button>
-    </form>
-  )
-}
+    <>
+      <form onSubmit={handlesubmit}>
+        <input
+          type="text"
+          placeholder="Enter Task"
+          value={input.Task}
+          onChange={(e) => handleChnge("Task", e)}
+        />
+        <br />
+        <br />
+        <input
+          type="text"
+          placeholder="Enter Description"
+          value={input.Description}
+          onChange={(e) => handleChnge("Description", e)}
+        />
+        <br />
+        <br />
+        <button type="submit">add</button>
+      </form>
+    </>
+  );
+};
 
-export default AddTodo
-
-
-
-
+export default AddTodo;
