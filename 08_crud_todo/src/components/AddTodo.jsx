@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const AddTodo = ({addtodo}) => {
+const AddTodo = ({addtodo,editval}) => {
   const [input, setInput] = useState({
     Task: "",
     Description: "",
   });
+
+  useEffect(() => {
+    editval ? setInput(editval) : null
+  },[editval])
 
   const handleChnge = (feild, e) => {
     setInput((prev) => {
@@ -42,7 +46,7 @@ const AddTodo = ({addtodo}) => {
         />
         <br />
         <br />
-        <button type="submit">add</button>
+        <button type="submit">{editval ? "update" : "add"}</button>
       </form>
     </>
   );
