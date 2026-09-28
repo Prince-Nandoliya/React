@@ -21,8 +21,8 @@ const Listodos = ({todos,handleDelete,handleEdit}) => {
                         <td>{index + 1}</td>
                         <td>{t.Task}</td>
                         <td>{t.Description}</td>
-                        <td><button onClick={() => handleEdit(t.id)}>Edit</button></td>
-                        <td><button onClick={() => handleDelete(t.id)}>Delet</button></td>
+                        <td><button className='w-75 rounded-3 ' onClick={() => handleEdit(t.id)}>Edit</button></td>
+                        <td><button className='w-75 rounded-3' onClick={() => handleDelete(t.id)}>Delet</button></td>
                     </tr>
                 )
             })}

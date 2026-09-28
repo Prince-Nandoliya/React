@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-const AddTodo = ({addtodo,editval}) => {
+const AddTodo = ({ addtodo, editval }) => {
   const [input, setInput] = useState({
     Task: "",
     Description: "",
   });
 
   useEffect(() => {
-    editval ? setInput(editval) : null
-  },[editval])
+    editval ? setInput(editval) : null;
+  }, [editval]);
 
   const handleChnge = (feild, e) => {
     setInput((prev) => {
@@ -22,32 +22,37 @@ const AddTodo = ({addtodo,editval}) => {
   const handlesubmit = (e) => {
     e.preventDefault();
 
-    addtodo(input); 
+    addtodo(input);
 
     setInput({ Task: "", Description: "" });
   };
 
   return (
     <>
-      <form onSubmit={handlesubmit}>
-        <input
-          type="text"
-          placeholder="Enter Task"
-          value={input.Task}
-          onChange={(e) => handleChnge("Task", e)}
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          placeholder="Enter Description"
-          value={input.Description}
-          onChange={(e) => handleChnge("Description", e)}
-        />
-        <br />
-        <br />
-        <button type="submit">{editval ? "update" : "add"}</button>
-      </form>
+     
+        <form onSubmit={handlesubmit} className="mx-auto w-50 mt-3 text-center">
+          <input
+            type="text"
+            placeholder="Enter Task"
+            value={input.Task}
+            onChange={(e) => handleChnge("Task", e)}
+            className=" w-100 rounded-3"
+          />
+          <br />
+          <br />
+
+          <input
+            type="text"
+            placeholder="Enter Description"
+            value={input.Description}
+            onChange={(e) => handleChnge("Description", e)}
+            className=" w-100 rounded-3"
+          />
+          <br />
+          <br />
+
+          <button className="w-25 rounded-3 fs-5"  type="submit">{editval ? "update" : "add"} </button>
+        </form>
     </>
   );
 };
