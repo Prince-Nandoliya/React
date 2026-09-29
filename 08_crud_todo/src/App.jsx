@@ -32,36 +32,81 @@ const App = () => {
             : t,
         ),
       );
-      setEditval(null)
-    }else {
+      setEditval(null);
+    } else {
       const newtodo = {
-        id:new Date().getTime(),
+        id: new Date().getTime(),
         Task: input.Task,
         Description: input.Description,
-      }
-      setTodos((prev)=> [...prev,newtodo])
-      alert("Task add successfully")
+      };
+      setTodos((prev) => [...prev, newtodo]);
+      alert("Task add successfully");
     }
   };
 
   const handleDelete = (id) => {
-    setTodos(todos.filter((t)=> t.id !== id))
-  }
+    setTodos(todos.filter((t) => t.id !== id));
+  };
 
   const handleEdit = (id) => {
-    const todo = todos.find((t) => t.id === id)
+    const todo = todos.find((t) => t.id === id);
 
-    setEditval(todo)
-  }
+    setEditval(todo);
+  };
 
-  return(
+  const handleCheck = (id) => {
+    setTodos((prev) =>
+      prev.map((t) =>
+        t.id === id
+          ? {
+              ...t,
+              completed: !t.completed,
+            }
+          : t,
+      ),
+    );
+  };
+
+  const TotalTask = todos.length;
+
+  const completedTasks = todos.filter((todos) => todos.completed).length;
+  const pendingTasks = todos.filter((todos) => !todos.completed).length;
+
+  return (
     <>
-    <AddTodo addtodo={handleadd} editval={editval}/>
-    <br /><br />
-    <Listodos todos={todos} handleDelete={handleDelete} handleEdit={handleEdit}/>
+      <div className="container  mt-5">
+        <div className="row text-center">
+          <div className="col-md-4 ">
+            <div className="card  w-50 rounded-3">
+              <h5 className="fw-bold">Total Task</h5>
+              <h2>{TotalTask}</h2>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card  w-50 rounded-3">
+              <h5 className="fw-bold">Completed Task</h5>
+              <h2>{completedTasks}</h2>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card rounded-3 w-50">
+              <h5>pending Task</h5>
+              <h2>{pendingTasks}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <AddTodo addtodo={handleadd} editval={editval} />
+      <br />
+      <br />
+      <Listodos
+        todos={todos}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+        handleCheck={handleCheck}
+      />
     </>
-  )
-
+  );
 };
 
 export default App;
