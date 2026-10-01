@@ -1,33 +1,40 @@
-import React ,{children} from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MainLayout from './routes/MainLayout'
-import Home from './components/Home'
-import About from './components/About'
+import React, {  Suspense, lazy } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainLayout from "./routes/MainLayout";
+import Loading from "./components/Loading";
+import Error from "./components/Error";
+
+const Home = lazy(() => import("./components/Home"));
+const About = lazy(() => import("./components/About"));
 
 const App = () => {
-
   const router = createBrowserRouter([
     {
-      path:"/",
-      element:<MainLayout/>,
-      children:[
+      path: "/",
+      element: <MainLayout />,
+      errorElement: <Error />,
+      children: [
         {
-          index:true,
-          element:<Home/>
+          index: true,
+          element: <Home />,
         },
         {
-          path:"About",
-          element:<About/>
-        }
-        
-        
-      ]
-    }
-  ])
+          path: "Home",
+          element: <Home />,
+        },
+        {
+          path: "About",
+          element: <About />,
+        },
+      ],
+    },
+  ]);
 
+  return (
+    <Suspense fallback={<Loading />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
+};
 
-  return <RouterProvider router={router}/>
-   
-}
-
-export default App
+export default App;
