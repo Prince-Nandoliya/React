@@ -74,22 +74,22 @@ const App = () => {
 
   return (
     <>
-      <div className="container  mt-5">
+      <div className="container  mt-5 w-75 ">
         <div className="row text-center">
           <div className="col-md-4 ">
-            <div className="card  w-50 rounded-3">
+            <div className="card   rounded-3">
               <h5 className="fw-bold">Total Task</h5>
               <h2>{TotalTask}</h2>
             </div>
           </div>
           <div className="col-md-4">
-            <div className="card  w-50 rounded-3">
+            <div className="card   rounded-3">
               <h5 className="fw-bold">Completed Task</h5>
               <h2>{completedTasks}</h2>
             </div>
           </div>
           <div className="col-md-4">
-            <div className="card rounded-3 w-50">
+            <div className="card rounded-3 ">
               <h5>pending Task</h5>
               <h2>{pendingTasks}</h2>
             </div>
