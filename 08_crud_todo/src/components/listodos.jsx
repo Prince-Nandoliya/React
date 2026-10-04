@@ -4,7 +4,7 @@ import "./table.css";
 const Listodos = ({ todos, handleDelete, handleEdit, handleCheck }) => {
   return (
     <>
-      <table className="table table-bordered table-striped w-75 mx-auto  overflow-hidden">
+      <table className="table table-bordered table-striped w-75 mx-auto rounded-5 overflow-hidden">
         <thead>
           <tr>
             <th>Id</th>
