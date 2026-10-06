@@ -1,15 +1,25 @@
 import React from 'react'
-import WebNavbar from './ui/Navbar'
+import {createBrowserRouter,RouterProvider} from "react-router-dom"
+import MainLayout from './routes/MainLayout'
+import Pagenot from './ui/Pagenot'
 import Student from './components/Student'
 
 const App = () => {
-  return (
-    <>
-    <WebNavbar/>
-    <Student/>
-  
-    </>
-  )
+  const router = createBrowserRouter([
+    {
+      path:"/",
+      element:<MainLayout/>,
+      errorElement:<Pagenot/>,
+      children:[
+        {
+          index:true,
+          element:<Student/>
+        }
+      ]
+    }
+  ])
+
+  return<RouterProvider router={router}/>
 }
 
 export default App
