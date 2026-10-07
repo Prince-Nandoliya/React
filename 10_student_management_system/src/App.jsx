@@ -3,6 +3,7 @@ import {createBrowserRouter,RouterProvider} from "react-router-dom"
 import MainLayout from './routes/MainLayout'
 import Pagenot from './ui/Pagenot'
 import Student from './components/Student'
+import FormExample from './components/AddStudent'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const App = () => {
         {
           index:true,
           element:<Student/>
+        },
+        {
+          path:"/add",
+          element:<FormExample/>
         }
       ]
     }

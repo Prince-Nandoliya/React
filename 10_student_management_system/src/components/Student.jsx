@@ -52,7 +52,7 @@ const Student = () => {
 
   return (
     <>
-      <table className="table table-bordered table-striped w-75 mx-auto overflow-hidden">
+      <table className="table table-bordered table-striped w-75 mx-auto overflow-hidden mt-5">
         <thead>
           <tr>
             <th>No</th>
