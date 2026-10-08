@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { allStudent } from "../api/student";
+// import { allStudent } from "../api/student";
+import { allStudent } from "../api/studentAxios";
+import { deleteStudents } from "../api/studentAxios";
 
 const Student = () => {
   const [Student, setStudent] = useState([]);
@@ -22,6 +24,13 @@ const Student = () => {
     } finally {
       setLoding(false);
     }
+  };
+
+  const handleDelete = (id) => {
+    deleteStudents(id);
+
+    alert("student deleted successfully");
+    loadData();
   };
 
   useEffect(() => {
@@ -62,6 +71,9 @@ const Student = () => {
             <th>course</th>
             <th>isActive</th>
             <th>mobileNumber</th>
+            <th colSpan={2} className="text-center">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -74,6 +86,12 @@ const Student = () => {
               <td>{item.course}</td>
               <td>{item.isActive}</td>
               <td>{item.mobileNumber}</td>
+              <td>
+                <button className="btn btn-outline-warning">Edit</button>
+              </td>
+              <td>
+                <button onClick={() => handleDelete(item._id)} className=" btn btn-outline-danger">Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -5,8 +5,10 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import * as formik from "formik";
 import * as yup from "yup";
-import { addStudent } from "../api/student";
+// import { addStudent } from "../api/student";
+import { addStudent } from "../api/studentAxios";
 import {useNavigate} from "react-router-dom"
+import Student from "./Student";
 
 function addStudents() {
   const { Formik } = formik;
@@ -22,6 +24,7 @@ function addStudents() {
     mobileNumber: yup.string().required(),
     terms: yup.bool().required().oneOf([true], "Terms must be accepted"),
   });
+
 
   return (
     <div className="container">
