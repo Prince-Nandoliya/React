@@ -6,9 +6,12 @@ import Row from "react-bootstrap/Row";
 import * as formik from "formik";
 import * as yup from "yup";
 import { addStudent } from "../api/student";
+import {useNavigate} from "react-router-dom"
 
 function addStudents() {
   const { Formik } = formik;
+
+  const navigate = useNavigate()
 
   const schema = yup.object().shape({
     name: yup.string().required(),
@@ -26,6 +29,10 @@ function addStudents() {
         validationSchema={schema}
         onSubmit={(values, { resetForm }) => {
           addStudent(values);
+
+          alert("new Student add Successfully")
+
+          navigate("/")
 
           resetForm();
         }}
