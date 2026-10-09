@@ -18,7 +18,7 @@ export async function allStudent() {
 export async function addStudent(Student) {
     try {
         
-        const res = await axios.post(`${BASE_URL}/`,Student)
+        const res = await axios.post(`${BASE_URL}/add`,Student)
 
         if(res.status !== 201){
             throw new Error("fail to add student")

@@ -17,25 +17,25 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 //   }
 // };
 
-export const addStudent = async (stdData) => {
-  try {
-    const res = await fetch(`${BASE_URL}/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(stdData),
-    });
+// export const addStudent = async (stdData) => {
+//   try {
+//     const res = await fetch(`${BASE_URL}/add`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(stdData),
+//     });
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.message || "fail to add student");
-    }
+//     if (!res.ok) {
+//       throw new Error(data.message || "fail to add student");
+//     }
 
-    return data;
-  } catch (error) {
-    console.log(error.message);
-    throw Error;
-  }
-};
+//     return data;
+//   } catch (error) {
+//     console.log(error.message);
+//     throw Error;
+//   }
+// };
