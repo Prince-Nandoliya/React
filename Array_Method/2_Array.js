@@ -4,7 +4,7 @@ let number = [
   [7, 8, 9],
 ];
 
-console.log("num array", number);
+//console.log("num array", number);
 
 console.log("after flat method", number.flat());
 
