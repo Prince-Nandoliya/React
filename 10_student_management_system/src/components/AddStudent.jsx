@@ -7,13 +7,13 @@ import * as formik from "formik";
 import * as yup from "yup";
 // import { addStudent } from "../api/student";
 import { addStudent } from "../api/studentAxios";
-import {useNavigate} from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
 import Student from "./Student";
 
 function addStudents() {
   const { Formik } = formik;
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     name: yup.string().required(),
@@ -25,7 +25,6 @@ function addStudents() {
     terms: yup.bool().required().oneOf([true], "Terms must be accepted"),
   });
 
-
   return (
     <div className="container">
       <Formik
@@ -33,9 +32,9 @@ function addStudents() {
         onSubmit={(values, { resetForm }) => {
           addStudent(values);
 
-          alert("new Student add Successfully")
+          alert("new Student add Successfully");
 
-          navigate("/")
+          navigate("/");
 
           resetForm();
         }}
@@ -49,6 +48,8 @@ function addStudents() {
           terms: false,
         }}
       >
+       
+
         {({ handleSubmit, handleChange, values, touched, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Row className="mb-3">
