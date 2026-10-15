@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { expenseContext } from "../context/ExpenseContext";
 
-const ListExpense = ({ expenseList }) => {
+const ListExpense = () => {
+  const { expenseList } = useContext(expenseContext);
+
   return (
     <>
       <table className="table table-bordered ">
