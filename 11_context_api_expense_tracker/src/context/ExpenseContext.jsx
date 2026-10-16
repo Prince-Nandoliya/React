@@ -28,9 +28,14 @@ const ExpenseContext = ({ children }) => {
 
   const [expenseList, setExpensList] = useState(initialvalues);
 
+  const handleDelete = (id) => {
+    setExpensList((prev) => prev.filter((expense) => expense.id !== id));
+  };
+
   const value = {
     expenseList,
     setExpensList,
+    handleDelete
   };
 
   return (
