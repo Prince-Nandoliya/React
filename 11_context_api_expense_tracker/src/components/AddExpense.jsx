@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { expenseContext } from "../context/ExpenseContext";
 
 const AddExpense = () => {
+  const { handleAdd } = useContext(expenseContext);
   const [input, setInput] = useState({
     Title: "",
     Description: "",
@@ -25,15 +26,10 @@ const AddExpense = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setExpensList((prev) => [
-      ...prev,
-      {
-        ...input,
-        id: Date.now(),
-        Amount: Number(input.Amount),
-      },
-    ]);
-
+    handleAdd({
+      ...input,
+      Amount: Number(input.Amount),
+    });
     setInput({
       Title: "",
       Description: "",

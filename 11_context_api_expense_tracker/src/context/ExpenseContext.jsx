@@ -28,14 +28,23 @@ const ExpenseContext = ({ children }) => {
 
   const [expenseList, setExpensList] = useState(initialvalues);
 
+  const handleAdd = (input) => {
+    const newExpense = {
+      ...input,
+      id: Date.now(),
+    };
+    setExpensList((prev) => [...prev, newExpense]);
+  };
+
   const handleDelete = (id) => {
     setExpensList((prev) => prev.filter((expense) => expense.id !== id));
   };
 
   const value = {
+    handleAdd,
     expenseList,
-    setExpensList,
-    handleDelete
+    handleAdd,
+    handleDelete,
   };
 
   return (
