@@ -4,7 +4,7 @@ import { expenseContext } from "./context/ExpenseContext";
 import ListExpense from "./components/ListExpense";
 
 const App = () => {
-  const { expenseList } = useContext(expenseContext);
+  const { expenseList,setExpenseList } = useContext(expenseContext);
   console.log("expenselist", expenseList);
 
   const handleAdd = (input) => {

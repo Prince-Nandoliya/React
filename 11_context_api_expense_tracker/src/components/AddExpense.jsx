@@ -46,7 +46,7 @@ const AddExpense = () => {
 
   return (
     <>
-      <div className="container w-75 text-center mt-5">
+      <div className="card w-75 text-center mt-5 mx-auto p-3">
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
             <div className="col-lg-6">
@@ -68,13 +68,22 @@ const AddExpense = () => {
               />
             </div>
             <div className="col-lg-6">
-              <input
+              <select
+                name=""
+                id=""
                 className="w-75"
-                type="text"
-                placeholder="Enter Category"
                 value={input.Category}
                 onChange={(e) => handleChange(e, "Category")}
-              />
+              >
+                <option value="">Select category</option>
+                <option value="Money Transfer">Money Transfer</option>
+                <option value="Cash Withdrawal">Cash Withdrawal</option>
+                <option value="General Expense">General Expense</option>
+                <option value="Food&Dining">Food</option>
+                <option value="HealthCare">HealthCare</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Travel">Travel</option>
+              </select>
             </div>
             <div className="col-lg-6">
               <input
@@ -103,10 +112,17 @@ const AddExpense = () => {
               />
             </div>
 
-            <button type="submit">Add</button>
+            <button
+              type="submit"
+              className="btn btn-dark rounded-3 w-50 mx-auto"
+            >
+              Add
+            </button>
           </div>
         </form>
       </div>
+      <br />
+      <br />
     </>
   );
 };
