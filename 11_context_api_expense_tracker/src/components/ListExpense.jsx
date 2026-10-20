@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { expenseContext } from "../context/ExpenseContext";
 
 const ListExpense = () => {
-  const { expenseList, handleDelete } = useContext(expenseContext);
+  const { expenseList, handleDelete, handleEdit } = useContext(expenseContext);
 
   return (
     <>
@@ -32,7 +32,12 @@ const ListExpense = () => {
               <td>{expense.Date}</td>
               <td>{expense.Type}</td>
               <td className="text-center">
-                <button className="btn btn-dark rounded-4">Edit</button>
+                <button
+                  className="btn btn-dark rounded-4"
+                  onClick={() => handleEdit(expense.id)}
+                >
+                  Edit
+                </button>
               </td>
               <td className="text-center">
                 <button

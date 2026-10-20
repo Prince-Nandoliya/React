@@ -2,38 +2,70 @@ import React, { createContext, useState } from "react";
 
 export const expenseContext = createContext({
   expenseList: [],
+  handleAdd: () => {},
+  handleDelete: () => {},
+  editVal: null,
+  handleEdit: () => {},
+  setEditval: () => {},
 });
+const initialvalues = [
+  {
+    id: 1,
+    Title: "Food",
+    Description: "Lunch",
+    Amount: 1000,
+    Date: "2026-10-14",
+    Category: "food",
+    Type: "debit",
+  },
+  {
+    id: 2,
+    Title: "Sports",
+    Description: "Equipment",
+    Amount: 5000,
+    Date: "2026-10-14",
+    Category: "sports",
+    Type: "debit",
+  },
+];
 
 const ExpenseContext = ({ children }) => {
-  const initialvalues = [
-    {
-      id: 1,
-      Title: "Food",
-      Description: "Lunch",
-      Amount: 1000,
-      Date: "2026-10-14",
-      Category: "food",
-      Type: "debit",
-    },
-    {
-      id: 2,
-      Title: "Sports",
-      Description: "Equipment",
-      Amount: 5000,
-      Date: "2026-10-14",
-      Category: "sports",
-      Type: "debit",
-    },
-  ];
-
   const [expenseList, setExpensList] = useState(initialvalues);
+  const [editVal, setEditval] = useState(null);
 
   const handleAdd = (input) => {
-    const newExpense = {
-      ...input,
-      id: Date.now(),
-    };
-    setExpensList((prev) => [...prev, newExpense]);
+    if (!input) {
+      return console.log("add input data");
+    }
+
+    if (editVal) {
+      setExpensList((prev) =>
+        prev.map((expense) =>
+          expense.id === editVal.id
+            ? {
+                ...input,
+                id: editVal.id,
+                Amount: Number(input.Amount),
+              }
+            : expense,
+        ),
+      );
+      setEditval(null);
+    } else {
+      const newExpense = {
+        ...input,
+        id: Date.now(),
+        Amount: Number(input.Amount),
+      };
+
+      setExpensList((prev) => [...prev, newExpense]);
+    }
+  };
+
+  const handleEdit = (id) => {
+    const expense = expenseList.find((item) => item.id === id);
+
+    setEditval(expense || null);
   };
 
   const handleDelete = (id) => {
@@ -43,8 +75,9 @@ const ExpenseContext = ({ children }) => {
   const value = {
     handleAdd,
     expenseList,
-    handleAdd,
     handleDelete,
+    handleEdit,
+    editVal,
   };
 
   return (

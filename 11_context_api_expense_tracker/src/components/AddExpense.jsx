@@ -1,16 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { expenseContext } from "../context/ExpenseContext";
 
+const initialForm = {
+  Title: "",
+  Description: "",
+  Category: "",
+  Amount: "",
+  Date: "",
+  Type: "",
+};
 const AddExpense = () => {
-  const { handleAdd } = useContext(expenseContext);
-  const [input, setInput] = useState({
-    Title: "",
-    Description: "",
-    Category: "",
-    Amount: "",
-    Date: "",
-    Type: "",
-  });
+  const { handleAdd, editVal } = useContext(expenseContext);
+  const [input, setInput] = useState(initialForm);
+
+  useEffect(() => {
+    editVal ? setInput(editVal) : null;
+  }, [editVal]);
 
   const { setExpensList } = useContext(expenseContext);
 
@@ -111,8 +116,7 @@ const AddExpense = () => {
             <button
               type="submit"
               className="btn btn-dark rounded-3 w-50 mx-auto"
-            >
-              Add
+            >{editVal ? "Update" : "Add"}
             </button>
           </div>
         </form>
