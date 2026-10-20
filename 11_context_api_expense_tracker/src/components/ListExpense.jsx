@@ -19,13 +19,17 @@ const ListExpense = () => {
     });
   };
 
-  const filterList = expenseList.filter((l) =>
-    l.Title.toLowerCase().includes(expenseQuery.Title.toLocaleLowerCase()),
-  );
+  const filterList = expenseList
+    .filter((l) =>
+      l.Title.toLowerCase().includes(expenseQuery.Title.toLocaleLowerCase()),
+    )
+    .filter((l) =>
+      expenseQuery.Type === "all" ? true : l.Type === expenseQuery.Type,
+    );
 
   return (
     <>
-      <div className="card w-75  mx-auto p-3">
+      <div className="card w-75  mx-auto p-3 ">
         <form>
           <label>Title</label>
           <input
@@ -34,6 +38,15 @@ const ListExpense = () => {
             value={expenseQuery.Title}
             onChange={(e) => handleChange("Title", e)}
           />
+          <label>Type</label>
+          <select
+            value={expenseQuery.Type}
+            onChange={(e) => handleChange("Type", e)}
+          >
+            <option>all</option>
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+          </select>
         </form>
       </div>
       <br />
