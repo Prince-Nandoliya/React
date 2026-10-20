@@ -5,7 +5,7 @@ import ListExpense from "./components/ListExpense";
 import ExpenseStats from "./components/ExpenseStats";
 
 const App = () => {
-  const { expenseList,setExpenseList } = useContext(expenseContext);
+  const { expenseList, setExpenseList } = useContext(expenseContext);
   console.log("expenselist", expenseList);
 
   const handleAdd = (input) => {
@@ -14,8 +14,8 @@ const App = () => {
 
   return (
     <>
+      <ExpenseStats />
       <AddExpense handleAdd={handleAdd} />
-      <ExpenseStats/>
       <ListExpense expenseList={expenseList} />
     </>
   );

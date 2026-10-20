@@ -1,11 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { expenseContext } from "../context/ExpenseContext";
 
 const ListExpense = () => {
   const { expenseList, handleDelete, handleEdit } = useContext(expenseContext);
 
+  const [expenseQuery, setExpenseQuery] = useState({
+    Title: "",
+    Category: "all",
+    Type: "all",
+  });
+
+  const handleChange = (field, e) => {
+    setExpenseQuery((prev) => {
+      return {
+        ...prev,
+        [field]: e.target.value,
+      };
+    });
+  };
+
+  const filterList = expenseList.filter((l) =>
+    l.Title.toLowerCase().includes(expenseQuery.Title.toLocaleLowerCase()),
+  );
+
   return (
     <>
+      <div className="card w-75  mx-auto p-3">
+        <form>
+          <label>Title</label>
+          <input
+            type="text"
+            placeholder="Enter Title"
+            value={expenseQuery.Title}
+            onChange={(e) => handleChange("Title", e)}
+          />
+        </form>
+      </div>
+      <br />
+      <br />
       <table className="table table-bordered ">
         <thead>
           <tr>
@@ -22,7 +54,7 @@ const ListExpense = () => {
           </tr>
         </thead>
         <tbody>
-          {expenseList.map((expense, index) => (
+          {filterList.map((expense, index) => (
             <tr key={expense.id}>
               <td>{index + 1}</td>
               <td>{expense.Title}</td>
