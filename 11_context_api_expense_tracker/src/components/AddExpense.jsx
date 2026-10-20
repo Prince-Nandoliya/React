@@ -57,6 +57,7 @@ const AddExpense = () => {
                 placeholder="Enter Title"
                 value={input.Title}
                 onChange={(e) => handleChange(e, "Title")}
+                required
               />
             </div>
             <div className="col-lg-6">
@@ -66,6 +67,7 @@ const AddExpense = () => {
                 placeholder="Enter Description"
                 value={input.Description}
                 onChange={(e) => handleChange(e, "Description")}
+                required
               />
             </div>
             <div className="col-lg-6">
@@ -75,6 +77,7 @@ const AddExpense = () => {
                 className="w-75"
                 value={input.Category}
                 onChange={(e) => handleChange(e, "Category")}
+                required
               >
                 <option value="">Select category</option>
                 <option value="Money Transfer">Money Transfer</option>
@@ -93,6 +96,7 @@ const AddExpense = () => {
                 placeholder="Enter Amount"
                 value={input.Amount}
                 onChange={(e) => handleChange(e, "Amount")}
+                required
               />
             </div>
             <div className="col-lg-6">
@@ -101,22 +105,27 @@ const AddExpense = () => {
                 type="Date"
                 value={input.Date}
                 onChange={(e) => handleChange(e, "Date")}
+                required
               />
             </div>
             <div className="col-lg-6">
-              <input
+              <select
                 className="w-75"
-                type="text"
-                placeholder="Enter Type"
                 value={input.Type}
                 onChange={(e) => handleChange(e, "Type")}
-              />
+                required
+              >
+                <option value="">select Type</option>
+                <option value="Credit">Credit</option>
+                <option value="Debit">Debit</option>
+              </select>
             </div>
 
             <button
               type="submit"
               className="btn btn-dark rounded-3 w-50 mx-auto"
-            >{editVal ? "Update" : "Add"}
+            >
+              {editVal ? "Update" : "Add"}
             </button>
           </div>
         </form>

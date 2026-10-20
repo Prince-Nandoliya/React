@@ -7,6 +7,9 @@ export const expenseContext = createContext({
   editVal: null,
   handleEdit: () => {},
   setEditval: () => {},
+  Debit: 0,
+  Credit: 0,
+  Balance: 0,
 });
 const initialvalues = [
   {
@@ -16,7 +19,7 @@ const initialvalues = [
     Amount: 1000,
     Date: "2026-10-14",
     Category: "food",
-    Type: "debit",
+    Type: "Debit",
   },
   {
     id: 2,
@@ -25,7 +28,7 @@ const initialvalues = [
     Amount: 5000,
     Date: "2026-10-14",
     Category: "sports",
-    Type: "debit",
+    Type: "Debit",
   },
 ];
 
@@ -72,12 +75,25 @@ const ExpenseContext = ({ children }) => {
     setExpensList((prev) => prev.filter((expense) => expense.id !== id));
   };
 
+  const Debit = expenseList
+    .filter((p) => p.Type === "Credit")
+    .reduce((acc, curr) => acc + Number(curr.Amount), 0);
+
+  const Credit = expenseList
+    .filter((p) => p.Type === "Debit")
+    .reduce((acc, curr) => acc + Number(curr.Amount), 0);
+
+  const Balance = Credit - Debit;
+
   const value = {
     handleAdd,
     expenseList,
     handleDelete,
     handleEdit,
     editVal,
+    Debit,
+    Credit,
+    Balance,
   };
 
   return (

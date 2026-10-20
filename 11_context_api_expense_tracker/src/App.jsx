@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import AddExpense from "./components/AddExpense";
 import { expenseContext } from "./context/ExpenseContext";
 import ListExpense from "./components/ListExpense";
+import ExpenseStats from "./components/ExpenseStats";
 
 const App = () => {
   const { expenseList,setExpenseList } = useContext(expenseContext);
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <>
       <AddExpense handleAdd={handleAdd} />
+      <ExpenseStats/>
       <ListExpense expenseList={expenseList} />
     </>
   );
