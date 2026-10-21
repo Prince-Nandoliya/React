@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 // import { allStudent } from "../api/student";
 import { allStudent } from "../api/studentAxios";
 import { deleteStudents } from "../api/studentAxios";
+import { useNavigate } from "react-router-dom";
 
 const Student = () => {
+  const navigate = useNavigate();
   const [Student, setStudent] = useState([]);
   const [loading, setLoding] = useState(false);
   const [error, setError] = useState(null);
@@ -87,10 +89,20 @@ const Student = () => {
               <td>{item.isActive}</td>
               <td>{item.mobileNumber}</td>
               <td>
-                <button className="btn btn-outline-warning">Edit</button>
+                <button
+                  className="btn btn-outline-warning"
+                  onClick={() => navigate(`/edit/${item._id}`)}
+                >
+                  Edit
+                </button>
               </td>
               <td>
-                <button onClick={() => handleDelete(item._id)} className=" btn btn-outline-danger">Delete</button>
+                <button
+                  onClick={() => handleDelete(item._id)}
+                  className=" btn btn-outline-danger"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

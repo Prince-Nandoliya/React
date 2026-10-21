@@ -6,14 +6,50 @@ import Row from "react-bootstrap/Row";
 import * as formik from "formik";
 import * as yup from "yup";
 // import { addStudent } from "../api/student";
-import { addStudent } from "../api/studentAxios";
+import { addStudent, getStudentById, updateStudent } from "../api/studentAxios";
 import { useNavigate, useParams } from "react-router-dom";
 import Student from "./Student";
+import { useEffect, useState } from "react";
 
-function addStudents() {
+function AddStudents() {
   const { Formik } = formik;
-
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [initialValues, setInitialValues] = useState({
+    name: "",
+    grid: "",
+    email: "",
+    course: "",
+    isActive: "",
+    mobileNumber: "",
+    terms: false,
+  });
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchStudent = async () => {
+      try {
+        const student = await getStudentById(id);
+
+        console.log("Student data:", student);
+
+        setInitialValues({
+          name: student.name ?? "",
+          grid: student.grid ?? "",
+          email: student.email ?? "",
+          course: student.course ?? "",
+          isActive: student.isActive ?? "",
+          mobileNumber: student.mobileNumber ?? "",
+          terms: student.terms ?? false,
+        });
+      } catch (error) {
+        console.error("Fetch Student Error:", error);
+        
+      }
+    };
+
+    fetchStudent();
+  }, [id]);
 
   const schema = yup.object().shape({
     name: yup.string().required(),
@@ -28,28 +64,27 @@ function addStudents() {
   return (
     <div className="container">
       <Formik
+        enableReinitialize
         validationSchema={schema}
-        onSubmit={(values, { resetForm }) => {
-          addStudent(values);
+        initialValues={initialValues}
+        onSubmit={async (values, { resetForm }) => {
+          try {
+            if (id) {
+              await updateStudent(id, values);
+              alert("Student updated successfully!");
+            } else {
+              await addStudent(values);
+              alert("Student added successfully!");
+            }
 
-          alert("new Student add Successfully");
-
-          navigate("/");
-
-          resetForm();
-        }}
-        initialValues={{
-          name: "",
-          grid: "",
-          email: "",
-          course: "",
-          isActive: "",
-          mobileNumber: "",
-          terms: false,
+            resetForm();
+            navigate("/");
+          } catch (error) {
+            console.error("Submit Error:", error);
+            alert("Something went wrong");
+          }
         }}
       >
-       
-
         {({ handleSubmit, handleChange, values, touched, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Row className="mb-3">
@@ -159,7 +194,9 @@ function addStudents() {
                 id="validationFormik0"
               />
             </Form.Group>
-            <Button type="submit">Add Student</Button>
+            <Button type="submit">
+              {id ? "Update Student" : "Add Student"}
+            </Button>{" "}
           </Form>
         )}
       </Formik>
@@ -167,4 +204,4 @@ function addStudents() {
   );
 }
 
-export default addStudents;
+export default AddStudents;
