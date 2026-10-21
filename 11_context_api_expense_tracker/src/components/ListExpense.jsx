@@ -19,34 +19,84 @@ const ListExpense = () => {
     });
   };
 
+  const handleReset = () => {
+    setExpenseQuery({
+      Title: "",
+      Type: "all",
+      Category: "all",
+    });
+  };
+
   const filterList = expenseList
     .filter((l) =>
       l.Title.toLowerCase().includes(expenseQuery.Title.toLocaleLowerCase()),
     )
     .filter((l) =>
       expenseQuery.Type === "all" ? true : l.Type === expenseQuery.Type,
+    )
+    .filter((l) =>
+      expenseQuery.Category === "all"
+        ? true
+        : l.Category === expenseQuery.Category,
     );
 
   return (
     <>
       <div className="card w-75  mx-auto p-3 ">
-        <form>
-          <label>Title</label>
-          <input
-            type="text"
-            placeholder="Enter Title"
-            value={expenseQuery.Title}
-            onChange={(e) => handleChange("Title", e)}
-          />
-          <label>Type</label>
-          <select
-            value={expenseQuery.Type}
-            onChange={(e) => handleChange("Type", e)}
-          >
-            <option>all</option>
-            <option value="Credit">Credit</option>
-            <option value="Debit">Debit</option>
-          </select>
+        <form className="mx-auto d-flex  gap-4">
+          <div>
+            <label>Title</label>
+            <input
+              type="text"
+              placeholder="Enter Title"
+              value={expenseQuery.Title}
+              onChange={(e) => handleChange("Title", e)}
+            />
+          </div>
+
+          <div>
+            <label>Type</label>
+            <select
+              value={expenseQuery.Type}
+              onChange={(e) => handleChange("Type", e)}
+            >
+              <option value="all">Select Type</option>
+              <option value="Credit">Credit</option>
+              <option value="Debit">Debit</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Category</label>
+            <select
+              value={expenseQuery.Category}
+              onChange={(e) => handleChange("Category", e)}
+            >
+              <option value="all">Select category</option>
+              <option value="Money Transfer">Money Transfer</option>
+              <option value="Cash Withdrawal">Cash Withdrawal</option>
+              <option value="General Expense">General Expense</option>
+              <option value="Food">Food</option>
+              <option value="HealthCare">HealthCare</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Travel">Travel</option>
+            </select>
+          </div>
+          <div>
+            <select
+              value={expenseQuery.sortBy}
+              onChange={(e) => handleChange("sortBy", e)}
+            >
+              <option value="all">Select</option>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+              <option value="moneyAsc">Money Ascending</option>
+              <option value="moneyDesc">Money Descending</option>
+            </select>
+          </div>
+          <button onClick={handleReset} className=" btn btn-dark rounded-3">
+            Reset
+          </button>
         </form>
       </div>
       <br />

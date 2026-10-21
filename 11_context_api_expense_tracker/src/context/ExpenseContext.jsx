@@ -18,7 +18,7 @@ const initialvalues = [
     Description: "Lunch",
     Amount: 1000,
     Date: "2026-10-14",
-    Category: "food",
+    Category: "Food",
     Type: "Debit",
   },
   {
@@ -27,7 +27,7 @@ const initialvalues = [
     Description: "Equipment",
     Amount: 5000,
     Date: "2026-10-14",
-    Category: "sports",
+    Category: "Travel",
     Type: "Debit",
   },
 ];
