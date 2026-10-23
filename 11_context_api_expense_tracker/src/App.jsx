@@ -15,10 +15,10 @@ const App = () => {
 
   return (
     <>
-      <Counter />
-      {/* <ExpenseStats />
+      {/* <Counter /> */}
+      <ExpenseStats />
       <AddExpense handleAdd={handleAdd} />
-      <ListExpense expenseList={expenseList} /> */}
+      <ListExpense expenseList={expenseList} />
     </>
   );
 };
