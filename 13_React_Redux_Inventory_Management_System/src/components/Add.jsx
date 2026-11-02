@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../features/carSlice";
 
 const Add = () => {
@@ -12,7 +12,13 @@ const Add = () => {
     FuelType: "",
   });
 
+  const { editval } = useSelector((state) => state.invontory);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    editval ? setInput(editval) : null;
+  }, [editval]);
 
   const handlechange = (feild, e) => {
     setInput((prev) => {
@@ -40,9 +46,9 @@ const Add = () => {
 
   return (
     <>
-      <div className="card">
+      <div className="card w-50 text-center mx-auto m-3 p-3 ">
         <form onSubmit={handlesubmit}>
-          <div className="row">
+          <div className="row gap-2 justify-content-center">
             <div className="col-md-4">
               <input
                 type="text"
@@ -92,7 +98,9 @@ const Add = () => {
               />
             </div>
           </div>
-          <button onClick={handlesubmit}>Add</button>
+          <button onClick={handlesubmit} className="w-50 mt-3 rounded-3">
+            Add
+          </button>
         </form>
       </div>
     </>
