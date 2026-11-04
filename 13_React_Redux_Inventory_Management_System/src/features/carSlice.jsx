@@ -30,9 +30,24 @@ const carSlice = createSlice({
     setEditValue: (state, action) => {
       state.editval = state.cars.find((c) => c.id === action.payload);
     },
+
+    handleEdit: (state, action) => {
+      const Index = state.cars.findIndex((c) => c.id === state.editval.id);
+      console.log("car index", Index);
+
+      if (Index !== -1) {
+        state.cars[Index] = action.payload;
+      }
+
+      state.editval = null;
+    },
+
+    handleDelete: (state, action) => {
+      state.cars = state.cars.filter((i) => i.id !== action.payload);
+    },
   },
 });
 
-export const { add, setEditValue } = carSlice.actions;
+export const { add, setEditValue, handleEdit, handleDelete } = carSlice.actions;
 
 export default carSlice.reducer;

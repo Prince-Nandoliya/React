@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "../features/carSlice";
+import { add, handleEdit } from "../features/carSlice";
 
 const Add = () => {
   const [input, setInput] = useState({
@@ -32,16 +32,40 @@ const Add = () => {
   const handlesubmit = (e) => {
     e.preventDefault();
 
-    dispatch(add(input));
+    if (
+      !input.CarName ||
+      !input.CarBrand ||
+      !input.CarPrice ||
+      !input.CarModal ||
+      !input.CarColor ||
+      !input.FuelType
+    ) {
+      return alert("all data are required");
+    }
 
-    setInput({
-      CarName: "",
-      CarBrand: "",
-      CarPrice: "",
-      CarModal: "",
-      CarColor: "",
-      FuelType: "",
-    });
+    if (editval) {
+      dispatch(handleEdit(input));
+
+      setInput({
+        CarName: "",
+        CarBrand: "",
+        CarPrice: "",
+        CarModal: "",
+        CarColor: "",
+        FuelType: "",
+      });
+    } else {
+      dispatch(add(input));
+
+      setInput({
+        CarName: "",
+        CarBrand: "",
+        CarPrice: "",
+        CarModal: "",
+        CarColor: "",
+        FuelType: "",
+      });
+    }
   };
 
   return (
@@ -99,7 +123,7 @@ const Add = () => {
             </div>
           </div>
           <button onClick={handlesubmit} className="w-50 mt-3 rounded-3">
-            Add
+            {editval ? "update" : "add"}
           </button>
         </form>
       </div>
