@@ -66,6 +66,7 @@ const Add = () => {
         FuelType: "",
       });
     }
+    return alert("New Car Add Successfully");
   };
 
   return (
@@ -114,12 +115,16 @@ const Add = () => {
               />
             </div>
             <div className="col-md-4">
-              <input
-                type="text"
-                placeholder="Enter FuelType"
+              <select
+                className="w-75"
                 value={input.FuelType}
                 onChange={(e) => handlechange("FuelType", e)}
-              />
+              >
+                <option value="">Fuel Type</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Electric">Electric</option>
+              </select>
             </div>
           </div>
           <button onClick={handlesubmit} className="w-50 mt-3 rounded-3">
