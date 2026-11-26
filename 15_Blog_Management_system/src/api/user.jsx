@@ -2,7 +2,6 @@ import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-// Register User
 export async function registerUser(UserData) {
   try {
     const res = await axios.post(`${BASE_URL}/user/add`, UserData);
@@ -13,7 +12,6 @@ export async function registerUser(UserData) {
   }
 }
 
-// Login User
 export async function loginUser(UserData) {
   try {
     const res = await axios.post(`${BASE_URL}/user/login`, UserData);
@@ -24,7 +22,6 @@ export async function loginUser(UserData) {
   }
 }
 
-// Get All Users
 export async function getAllUsers() {
   try {
     const res = await axios.get(`${BASE_URL}/user/all`);
@@ -34,7 +31,6 @@ export async function getAllUsers() {
   }
 }
 
-// Get Logged In User
 export async function getAuthUser(token) {
   try {
     const res = await axios.get(`${BASE_URL}/user/authlogin`, {
@@ -49,7 +45,6 @@ export async function getAuthUser(token) {
   }
 }
 
-// Logout
 export async function logoutUser(token) {
   try {
     const res = await axios.get(`${BASE_URL}/user/logout`, {
@@ -64,7 +59,6 @@ export async function logoutUser(token) {
   }
 }
 
-// Logout All Devices
 export async function logoutAllUsers(token) {
   try {
     const res = await axios.get(`${BASE_URL}/user/logoutall`, {
@@ -79,7 +73,6 @@ export async function logoutAllUsers(token) {
   }
 }
 
-// Update User
 export async function updateUser(id, UserData, token) {
   try {
     const url = id
@@ -98,7 +91,6 @@ export async function updateUser(id, UserData, token) {
   }
 }
 
-// Delete User Account
 export async function deleteUser(token) {
   try {
     const res = await axios.delete(`${BASE_URL}/user/delete`, {
@@ -113,7 +105,6 @@ export async function deleteUser(token) {
   }
 }
 
-// Admin Delete User
 export async function deleteUserByAdmin(id, token) {
   try {
     const res = await axios.delete(`${BASE_URL}/admin/delete/${id}`, {
@@ -127,7 +118,6 @@ export async function deleteUserByAdmin(id, token) {
     throw new Error(error.response?.data?.message || error.message);
   }
 }
-// Admin Update User
 export async function updateUserByAdmin(id, UserData, token) {
   try {
     const res = await axios.patch(`${BASE_URL}/admin/update/${id}`, UserData, {
