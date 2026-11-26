@@ -17,7 +17,6 @@ export async function getAllBlogs() {
 }
 
 
-// Add Blog
 export async function addBlog(BlogData, token) {
   try {
     const res = await axios.post(
@@ -38,7 +37,6 @@ export async function addBlog(BlogData, token) {
   }
 }
 
-// Delete Blog
 export async function deleteBlog(id, token) {
   try {
     const res = await axios.delete(
